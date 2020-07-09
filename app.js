@@ -4,7 +4,7 @@ const path = require('path');
 const morgan = require('morgan');
 const rfs = require('rotating-file-stream');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv').config();
+// const dotenv = require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/post');
