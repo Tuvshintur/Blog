@@ -4,14 +4,16 @@ const path = require('path');
 const morgan = require('morgan');
 const rfs = require('rotating-file-stream');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
+const postRoutes = require('./routes/post');
 
-const accessLogStream = rfs.createStream('access.log', {
+const accessLogStream = rfs.createStream(process.env.LOG_FILE, {
     size: '10M',
     compress: 'gzip',
     interval: '1d', // rotate daily
-    path: path.join(__dirname, 'log'),
+    path: path.join(__dirname, process.env.LOG_FILE_DIR),
 });
 
 const app = express();
@@ -30,20 +32,11 @@ app.use((req, res, next) => {
 });
 
 app.use('/', authRoutes);
+app.use('/posts', postRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));
-});
-
-// error handler
-app.use(function (err, req, res, next) {
-    if (err.name === 'UnauthorizedError') {
-        res.status(401).send('invalid token...');
-    }
-    res.status(err.status).json({
-        message: err.message,
-    });
 });
 
 module.exports = app;

@@ -1,4 +1,13 @@
-POST http://localhost:3000/login
+POST http://localhost:3100/login
+content-type: application/json
+
+{
+    "email":"tuvshinturbatzorig@gmail.com",
+    "password":"123456781"
+}
+
+
+POST http://localhost:3100/signup
 content-type: application/json
 
 {
@@ -6,11 +15,6 @@ content-type: application/json
     "password":"12345678"
 }
 
-
-POST http://localhost:3000/signup
-content-type: application/json
-
-{
-    "email":"tuvshinturbatzorig@gmail.com",
-    "password":"12345678"
-}
+GET http://localhost:3100/posts?category=Posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTQzMjk2MTAsImV4cCI6MTU5NDMzMzIxMH0.6Zv5ocL1JX-6D-Wyo5EHzTNzXfU8U2xysV5hwYUSqxQ
