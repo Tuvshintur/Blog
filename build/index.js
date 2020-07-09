@@ -11,6 +11,6 @@ var app = express_1.default();
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(cookie_session_1.default({ keys: ['whatever'] }));
 app.use(loginRoutes_1.router);
-app.listen(3000, function () {
-    console.log('listening on port :3000');
+app.listen(443, function () {
+    console.log('listening on port :443');
 });
