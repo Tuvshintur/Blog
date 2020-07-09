@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
 
 const MongoClient = mongodb.MongoClient;
-const mongoDbUrl = 'mongodb://localhost:27017/blog?retryWrites=true';
+const mongoDbUrl = process.env.DB_URL;
 
 let _db;
 
