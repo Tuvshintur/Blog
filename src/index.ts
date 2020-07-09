@@ -9,6 +9,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieSession({ keys: ['whatever'] }));
 app.use(router);
 
-app.listen(443, () => {
-    console.log('listening on port :443');
+app.listen(3000, () => {
+    console.log('listening on port :3000');
 });
