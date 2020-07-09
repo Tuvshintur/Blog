@@ -1,6 +1,9 @@
 {
     "name": "blog",
     "version": "1.0.0",
+    "engines": {
+        "node": "14.5.0"
+    },
     "scripts": {
         "start": "node ./bin/www"
     },
