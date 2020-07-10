@@ -2,6 +2,7 @@ const Router = require('express').Router;
 const jwt = require('jsonwebtoken');
 const mongodb = require('mongodb');
 const db = require('../db');
+const cors = require('cors');
 
 const router = Router();
 const ObjectId = mongodb.ObjectId;
@@ -68,7 +69,7 @@ router.get('/:id', (req, res, next) => {
         });
 });
 
-router.post('', authenticateJWT, (req, res, next) => {
+router.post('', authenticateJWT, cors(), (req, res, next) => {
     const { title, body, category, tags } = req.body;
     const newPost = {
         title: title,

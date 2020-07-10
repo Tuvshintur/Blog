@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 // const morgan = require('morgan');
 // const rfs = require('rotating-file-stream');
 const bodyParser = require('body-parser');
@@ -26,13 +27,7 @@ app.use(bodyParser.json());
 // app.use(morgan('combined', { stream: accessLogStream }));
 app.use('/images', express.static(path.join('./images')));
 
-app.use((req, res, next) => {
-    // Set CORS headers so that the React SPA is able to communicate with this server
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
+app.use(cors());
 
 app.use('/', authRoutes);
 app.use('/posts', postRoutes);
