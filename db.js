@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
 
 const MongoClient = mongodb.MongoClient;
-const mongoDbUrl = process.env.DB_URL;
+const mongoDbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.yawvo.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 let _db;
 
