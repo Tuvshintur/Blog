@@ -18,6 +18,8 @@ const postRoutes = require('./routes/post');
 
 const app = express();
 
+console.log('app created');
+
 app.disable('x-powered-by');
 app.use(bodyParser.json());
 // app.use(morgan('combined', { stream: accessLogStream }));
@@ -31,8 +33,12 @@ app.use((req, res, next) => {
     next();
 });
 
+console.log('cors created');
+
 app.use('/', authRoutes);
 app.use('/posts', postRoutes);
+
+console.log('routes created');
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
