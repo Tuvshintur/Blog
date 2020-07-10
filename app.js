@@ -20,7 +20,7 @@ const app = express();
 
 app.disable('x-powered-by');
 app.use(bodyParser.json());
-app.use(morgan('combined', { stream: accessLogStream }));
+// app.use(morgan('combined', { stream: accessLogStream }));
 app.use('/images', express.static(path.join('./images')));
 
 app.use((req, res, next) => {
