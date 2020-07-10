@@ -1,8 +1,10 @@
 const Router = require('express').Router;
 const jwt = require('jsonwebtoken');
+const mongodb = require('mongodb');
 const db = require('../db');
 
 const router = Router();
+const ObjectId = mongodb.ObjectId;
 
 const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -44,6 +46,44 @@ router.get('/', function (req, res, next) {
         })
         .then((result) => {
             res.status(200).json(posts);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({ message: 'An error occurred.' });
+        });
+});
+
+router.get('/:id', (req, res, next) => {
+    const { id } = req.params;
+    db.getDb()
+        .db()
+        .collection('posts')
+        .findOne({ _id: new ObjectId(id) })
+        .then((postDoc) => {
+            res.status(200).json(postDoc);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({ message: 'An error occurred.' });
+        });
+});
+
+router.post('', authenticateJWT, (req, res, next) => {
+    const { title, body, category, tags } = req.body;
+    const newPost = {
+        title: title,
+        body: body,
+        category: category,
+        tags: tags,
+        createdDate: new Date(),
+    };
+
+    db.getDb()
+        .db()
+        .collection('posts')
+        .insertOne(newPost)
+        .then((result) => {
+            res.status(201).json({ message: 'Post added', postId: result.insertedId });
         })
         .catch((err) => {
             console.log(err);
