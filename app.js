@@ -9,12 +9,12 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/post');
 
-const accessLogStream = rfs.createStream(process.env.LOG_FILE, {
-    size: '10M',
-    compress: 'gzip',
-    interval: '1d', // rotate daily
-    path: path.join(__dirname, process.env.LOG_FILE_DIR),
-});
+// const accessLogStream = rfs.createStream(process.env.LOG_FILE, {
+//     size: '10M',
+//     compress: 'gzip',
+//     interval: '1d', // rotate daily
+//     path: path.join(__dirname, process.env.LOG_FILE_DIR),
+// });
 
 const app = express();
 
