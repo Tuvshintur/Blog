@@ -5,8 +5,6 @@ const mongoDbUrl = process.env.DB_URL;
 
 let _db;
 
-console.log('DB');
-
 const initDb = (callback) => {
     if (_db) {
         console.log('Database is already initialized!');
